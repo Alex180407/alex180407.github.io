@@ -1,0 +1,125 @@
+/* Style général */
+html, body {
+  margin: 0;              /* Supprime les marges par défaut */
+  padding: 0;             /* Supprime les paddings par défaut */
+  height: 100%;           /* Assure que HTML et BODY couvrent toute la hauteur */
+  width: 100%;            /* Assure que HTML et BODY couvrent toute la largeur */
+  background: linear-gradient(135deg, #AAAAAA, #777777); /* Dégradé par défaut */
+  color: white;
+  text-align: center;
+  background-repeat: no-repeat; /* Empêche la répétition du fond */
+  background-size: cover; /* Étend le dégradé sur tout l'écran */
+  font-family: Arial, sans-serif;
+  transition:background 1,5 ease-in-out;/* Transition de fond de 1,5 seconde */
+
+}
+#image-box {
+    width: 100%;
+    object-fit: cover;
+
+}
+#theme-image {
+  aspect-ratio: 1 / 1;
+  display: flex;
+  width: 100%; /* La taille du carré */
+  overflow: hidden; /* Cache les parties de l'image qui dépassent */
+  position:relative;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+  border-radius: 50%;
+}
+#game-info {
+  padding: 15px 30px;
+  margin: 10px;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+  color: white;
+  left:2%;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+#theme-input {
+  width: 80%;
+  font-size: 16px;
+  background-color: rgba(0, 0, 0, 0.4);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 15px 30px;
+  margin: 10px;
+}
+
+
+/* Effet d'obscurcissement au survol */
+.button:hover {
+  opacity: 0.8; /* Réduit légèrement l'opacité pour un effet d'obscurcissement */
+}
+
+.step {
+  display: none;
+  padding: 20px;
+}
+
+.step.active {
+  display: block;
+}
+
+.button {
+  padding: 15px 30px;
+  margin: 10px;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+  background-color: rgba(0, 0, 0, 0.4);
+  color: white;
+  transition: background 0.3s ease-in-out, color 0.3s ease-in-out;
+}
+.button:hover {
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
+#scoreboard {
+  position: relative;
+  top: 10px;
+  left: 45%;
+  transform: translateX(-50%);
+  display: flex;
+  justify-content: space-between;
+  width: 80%;
+  background: rgba(0, 0, 0, 0.4);
+  border-radius: 10px;
+  padding: 10px 20px;
+}
+
+#scoreboard div {
+  flex: 1;
+  text-align: center;
+  font-size: 1.2rem;
+}
+
+#timer {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-top: 20px;
+}
+
+/* Animation popup */
+.popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 3rem;
+  font-weight: bold;
+  animation: popup-animation 1.5s ease;
+}
+
+@keyframes popup-animation {
+  0% { opacity: 0; transform: translate(-50%, -60%); }
+  50% { opacity: 1; transform: translate(-50%, -50%); }
+  100% { opacity: 0; transform: translate(-50%, -40%); }
+}

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jeu - Tu te mets combien ?</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div style="display:flex; align-items:center;">
+    <div id="game-info" style="position: relative; width: 150px;">
+      <h4 id="theme-title">Thème : -</h4>
+      <div id=image-box>
+        <img id="theme-image" src="https://www.photofunky.net/output/image/f/0/e/3/f0e330/photofunky.gif" alt="Image du thème" />
+      </div>
+      <p id="level-info">Niveau : -</p>
+    </div>
+
+    <!-- Encadré des scores -->
+    <div id="scoreboard">
+      <div id="player1">Momo : <span>0</span></div>
+      <div id="player2">Patrique : <span>0</span></div>
+      <div id="player3">Jean : <span>0</span></div>
+      <div id="player4">Tartuffe : <span>0</span></div>
+      <div id="player5">Alice : <span>0</span></div>
+      <div id="player6">Jean Jacque : <span>0</span></div>
+    </div>
+  </div>
+  <!-- Étape 1 : Choix du thème -->
+  <div id="step-theme" class="step active">
+    <h1>Choisissez un thème</h1>
+    <div class="theme-container">
+      <!-- Barre de texte pour le choix du thème -->
+      <input type="text" id="theme-input" placeholder="Saisissez un thème" />
+      <button id="theme-validate-btn" class="button">Valider</button>
+    </div>
+  </div>
+
+
+  <!-- Étape 2 : Choix du niveau -->
+  <div id="step-level" class="step">
+    <h1>Choisissez un niveau</h1>
+    <div class="level-container" style="display: flex; flex-direction: column;">
+      <button class="button level-btn" data-level="1">1. Niveau : Facile comme tout 😎
+        <strong>"J’aurais pu le faire les yeux fermés… et je l'ai fait."</strong></button>
+      <button class="button level-btn" data-level="2">2. Niveau : Tendre comme un marshmallow 🍡
+        <strong>"C’est plus facile que de faire du shopping avec la carte de crédit de quelqu’un d'autre."</strong></button>
+      <button class="button level-btn" data-level="3">3. Niveau : Enfantin 🍼
+        <strong>"Je pourrais enseigner ça à mon chat… si il ne dormait pas tout le temps."</strong></button>
+      <button class="button level-btn" data-level="4">4. Niveau : Une promenade dans le parc 🐕
+        <strong>"Comme une balade avec un chien qui ne tire pas sur la laisse."</strong></button>
+      <button class="button level-btn" data-level="5">5. Niveau : Sur un plateau d’argent 🍰
+        <strong>"C’est comme avoir un gâteau sans calories."</strong></button>
+      <button class="button level-btn" data-level="6">6. Niveau : Un café en terrasse ☕
+        <strong>"Je pourrais faire ça tout en sirotant mon expresso."</strong></button>
+      <button class="button level-btn" data-level="7">7. Niveau : Pas mal mais il y a du challenge 🧩
+        <strong>"C’est comme résoudre un puzzle de 500 pièces, mais avec un café à portée de main."</strong></button>
+      <button class="button level-btn" data-level="8">8. Niveau : À couper le souffle 🌬️
+        <strong>"Presque aussi difficile que de convaincre un enfant de manger des légumes."</strong></button>
+      <button class="button level-btn" data-level="9">9. Niveau : Mission possible (mais stressante) 🕵️‍♂️
+        <strong>"Un peu comme jouer à Tetris avec des pièces qui bougent toutes seules."</strong></button>
+      <button class="button level-btn" data-level="10">10. Niveau : Impossible à réaliser sans un miracle 🚀
+        <strong>"Même Google n’a pas la réponse. C’est une mission que James Bond abandonnerait."</strong></button>
+      <button class="button level-btn" id="pass">Passer ⏩</button>
+    </div>
+  </div>
+
+
+  <!-- Étape 3 : Question -->
+  <div id="step-question" class="step">
+    <h1 id="question-text">Question ici</h1>
+    <div class="answer-container">
+      <button class="button answer-btn" data-correct="false">Réponse A</button>
+      <button class="button answer-btn" data-correct="false">Réponse B</button>
+      <button class="button answer-btn" data-correct="false">Réponse C</button>
+      <button class="button answer-btn" data-correct="false">Réponse D</button>
+    </div>
+    <div id="timer">10</div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
