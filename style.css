@@ -1,63 +1,42 @@
-/* Style général */
 html, body {
-  margin: 0;              /* Supprime les marges par défaut */
-  padding: 0;             /* Supprime les paddings par défaut */
-  height: 100%;           /* Assure que HTML et BODY couvrent toute la hauteur */
-  width: 100%;            /* Assure que HTML et BODY couvrent toute la largeur */
-  background: linear-gradient(135deg, #AAAAAA, #777777); /* Dégradé par défaut */
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  background: linear-gradient(135deg, #AAAAAA, #777777);
   color: white;
   text-align: center;
-  background-repeat: no-repeat; /* Empêche la répétition du fond */
-  background-size: cover; /* Étend le dégradé sur tout l'écran */
   font-family: Arial, sans-serif;
-  transition:background 1,5 ease-in-out;/* Transition de fond de 1,5 seconde */
-
+  transition: background 1.5s ease-in-out;
 }
-#image-box {
-    width: 100%;
-    object-fit: cover;
 
+#game-info, #scoreboard, .step {
+  padding: 10px;
+  margin: 10px auto;
+  max-width: 95%; /* Limite la largeur pour les mobiles */
+  box-sizing: border-box; /* Inclut le padding dans la largeur */
 }
+
+#game-info {
+  background-color: rgba(0, 0, 0, 0.4);
+  border-radius: 5px;
+}
+
 #theme-image {
-  aspect-ratio: 1 / 1;
-  display: flex;
-  width: 100%; /* La taille du carré */
-  overflow: hidden; /* Cache les parties de l'image qui dépassent */
-  position:relative;
-  justify-content: center;
-  text-align: center;
-  align-items: center;
+  width: 100%; /* S'adapte à la largeur disponible */
+  max-width: 150px; /* Limite la taille maximale */
+  aspect-ratio: 1 / 1; /* Maintient un ratio carré */
+  margin: 0 auto;
   border-radius: 50%;
 }
-#game-info {
-  padding: 15px 30px;
-  margin: 10px;
-  border: none;
-  border-radius: 5px;
-  font-size: 1rem;
-  cursor: pointer;
-  color: white;
-  left:2%;
-  background-color: rgba(0, 0, 0, 0.4);
+
+#scoreboard {
+  display: flex;
+  flex-wrap: wrap; /* Permet de passer à la ligne sur petits écrans */
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.4);
+  border-radius: 10px;
 }
-
-#theme-input {
-  width: 80%;
-  font-size: 16px;
-  background-color: rgba(0, 0, 0, 0.4);
-  color: white;
-  border: none;
-  border-radius: 5px;
-  padding: 15px 30px;
-  margin: 10px;
-}
-
-
-/* Effet d'obscurcissement au survol */
-.button:hover {
-  opacity: 0.8; /* Réduit légèrement l'opacité pour un effet d'obscurcissement */
-}
-
 .step {
   display: none;
   padding: 20px;
@@ -66,60 +45,61 @@ html, body {
 .step.active {
   display: block;
 }
+#scoreboard div {
+  flex: 1 1 45%; /* Deux colonnes sur mobile */
+  margin: 5px;
+  text-align: center;
+  font-size: 1rem;
+}
 
 .button {
-  padding: 15px 30px;
-  margin: 10px;
+  width: 100%; /* Boutons larges sur mobile */
+  padding: 15px;
+  margin: 10px 0;
   border: none;
   border-radius: 5px;
   font-size: 1rem;
-  cursor: pointer;
   background-color: rgba(0, 0, 0, 0.4);
   color: white;
   transition: background 0.3s ease-in-out, color 0.3s ease-in-out;
 }
+
 .button:hover {
-    background-color: rgba(0, 0, 0, 0.2);
+  background-color: rgba(0, 0, 0, 0.2);
 }
 
-#scoreboard {
-  position: relative;
-  top: 10px;
-  left: 45%;
-  transform: translateX(-50%);
-  display: flex;
-  justify-content: space-between;
-  width: 80%;
-  background: rgba(0, 0, 0, 0.4);
-  border-radius: 10px;
-  padding: 10px 20px;
-}
-
-#scoreboard div {
-  flex: 1;
-  text-align: center;
-  font-size: 1.2rem;
+#theme-input {
+  width: 100%; /* Adapte à la largeur */
+  padding: 10px;
+  margin: 10px 0;
+  font-size: 1rem;
+  border: none;
+  border-radius: 5px;
+  background-color: rgba(0, 0, 0, 0.4);
+  color: white;
 }
 
 #timer {
   font-size: 2rem;
-  font-weight: bold;
-  margin-top: 20px;
+  margin: 10px auto;
 }
 
-/* Animation popup */
-.popup {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  font-size: 3rem;
-  font-weight: bold;
-  animation: popup-animation 1.5s ease;
-}
+@media (max-width: 600px) {
+  #scoreboard {
+    flex-direction: column; /* Affiche les scores en colonnes */
+    align-items: center;
+  }
 
-@keyframes popup-animation {
-  0% { opacity: 0; transform: translate(-50%, -60%); }
-  50% { opacity: 1; transform: translate(-50%, -50%); }
-  100% { opacity: 0; transform: translate(-50%, -40%); }
+  #scoreboard div {
+    flex: 1 1 100%; /* Score prend toute la largeur */
+    margin: 5px 0;
+  }
+
+  #game-info {
+    margin: 5px auto;
+  }
+
+  .step h1 {
+    font-size: 1.2rem; /* Réduit la taille des titres */
+  }
 }
