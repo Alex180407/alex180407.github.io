@@ -8,30 +8,50 @@
 </head>
 <body>
   <div style="display:flex; align-items:center;">
-    <div id="game-info" style="position: relative; width: 150px;">
+    <div id="game-info" style="position: relative; width: 150px;" class="step">
       <h4 id="theme-title">Thème : -</h4>
       <div id=image-box>
         <img id="theme-image" src="https://www.photofunky.net/output/image/f/0/e/3/f0e330/photofunky.gif" alt="Image du thème" />
       </div>
       <p id="level-info">Niveau : -</p>
     </div>
+    <div id="step-players" class="step">
+      <div id="player-number" class="player-selection-container">
+        <h2>Choisissez le nombre de joueurs</h2>
+        <label for="num-players">Nombre de joueurs (1 à 10) :</label>
+        <select id="num-players">
+          <option value="1">L'âme solitaire (1 joueur)</option>
+          <option value="2">Le duel de l'année (2 joueurs)</option>
+          <option value="3">Les trois mousquetaires (3 joueurs)</option>
+          <option value="4">La dream team (4 joueurs)</option>
+          <option value="5">Les cinq aventuriers (5 joueurs)</option>
+          <option value="6">Les six héros de la galaxie (6 joueurs)</option>
+          <option value="7">Les sept samouraïs (7 joueurs)</option>
+          <option value="8">La bande des huit (8 joueurs)</option>
+          <option value="9">Les neuf valeureux (9 joueurs)</option>
+          <option value="10">Le gang des dix (10 joueurs)</option>
+
+        </select>
+        <button id="start-game-btn" class="button">Commencer le jeu</button>
+      </div>
+
+      <div id="player-names-container" class="player-selection-container" style="display:none;">
+        <h2>Entrez les pseudos des joueurs</h2>
+        <div id="player-name-inputs"></div>
+        <button id="validate-players-btn" class="button">Valider les joueurs</button>
+      </div>
+    </div>
 
     <!-- Encadré des scores -->
     <div id="scoreboard">
-      <div id="player1">Momo : <span>0</span></div>
-      <div id="player2">Patrique : <span>0</span></div>
-      <div id="player3">Jean : <span>0</span></div>
-      <div id="player4">Tartuffe : <span>0</span></div>
-      <div id="player5">Alice : <span>0</span></div>
-      <div id="player6">Jean Jacque : <span>0</span></div>
     </div>
   </div>
   <!-- Étape 1 : Choix du thème -->
-  <div id="step-theme" class="step active">
+  <div id="step-theme" class="step">
     <h1>Choisissez un thème</h1>
     <div class="theme-container">
       <!-- Barre de texte pour le choix du thème -->
-      <input type="text" id="theme-input" placeholder="Saisissez un thème" />
+      <input type="text" id="theme-input" class="button" placeholder="Saisissez un thème" />
       <button id="theme-validate-btn" class="button">Valider</button>
     </div>
   </div>
@@ -39,7 +59,7 @@
 
   <!-- Étape 2 : Choix du niveau -->
   <div id="step-level" class="step">
-    <h1>Choisissez un niveau</h1>
+    <h1 id="theme">Tu te mets combien en Culture Général  ?</h1>
     <div class="level-container" style="display: flex; flex-direction: column;">
       <button class="button level-btn" data-level="1">1. Niveau : Facile comme tout 😎
         <strong>"J’aurais pu le faire les yeux fermés… et je l'ai fait."</strong></button>

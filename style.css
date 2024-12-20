@@ -1,14 +1,36 @@
-html, body {
+html {
   margin: 0;
   padding: 0;
-  height: 100%;
   width: 100%;
+  min-height: 100%; /* Permet de s'assurer que le body occupe toute la hauteur disponible */
   background: linear-gradient(135deg, #AAAAAA, #777777);
+  background-size: cover; /* Le fond couvre toute la page */
+  background-position: center center; /* Centre le fond pour une meilleure présentation */
+  background-repeat: no-repeat; /* Empêche la répétition du fond */
   color: white;
   text-align: center;
   font-family: Arial, sans-serif;
   transition: background 1.5s ease-in-out;
 }
+
+#step-players {
+  display: block;
+  opacity: 1;  /* Assurez-vous qu'il est visible */
+}
+.step.active {
+  display: block;
+}
+/* Masquer les étapes par défaut */
+.step {
+  display: block;
+}
+
+/* Masquer les étapes spécifiées durant la sélection des joueurs */
+.hide-steps .step-theme,
+.hide-steps #game-info {
+  display: none;
+}
+
 
 #game-info, #scoreboard, .step {
   padding: 10px;
@@ -31,7 +53,7 @@ html, body {
 }
 
 #scoreboard {
-  display: flex;
+  display: none;
   flex-wrap: wrap; /* Permet de passer à la ligne sur petits écrans */
   justify-content: center;
   background: rgba(0, 0, 0, 0.4);
@@ -52,7 +74,7 @@ html, body {
   font-size: 1rem;
 }
 
-.button {
+.button, #num-players {
   width: 100%; /* Boutons larges sur mobile */
   padding: 15px;
   margin: 10px 0;
@@ -61,23 +83,13 @@ html, body {
   font-size: 1rem;
   background-color: rgba(0, 0, 0, 0.4);
   color: white;
-  transition: background 0.3s ease-in-out, color 0.3s ease-in-out;
+  box-sizing: border-box;  /* Pour ne pas inclure de marges ou bordures à l'extérieur */
 }
 
 .button:hover {
   background-color: rgba(0, 0, 0, 0.2);
 }
 
-#theme-input {
-  width: 100%; /* Adapte à la largeur */
-  padding: 10px;
-  margin: 10px 0;
-  font-size: 1rem;
-  border: none;
-  border-radius: 5px;
-  background-color: rgba(0, 0, 0, 0.4);
-  color: white;
-}
 
 #timer {
   font-size: 2rem;
@@ -89,7 +101,6 @@ html, body {
     flex-direction: column; /* Affiche les scores en colonnes */
     align-items: center;
   }
-
   #scoreboard div {
     flex: 1 1 100%; /* Score prend toute la largeur */
     margin: 5px 0;
