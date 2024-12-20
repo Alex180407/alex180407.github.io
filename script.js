@@ -121,6 +121,7 @@ document.getElementById("validate-players-btn").addEventListener("click", () => 
   const displayScoreboard = document.getElementById("scoreboard");
   displayScoreboard.style.display = "flex";
   // Passer à l'étape suivante (choix du thème)
+  updateCurrentPlayerDisplay();
   showStep("theme");
 });
 
@@ -160,7 +161,21 @@ document.getElementById("num-players").addEventListener("input", (e) => {
   numPlayers = parseInt(e.target.value);
   updatePlayerNameFields();
 });
+// Sélection aléatoire d'un joueur pour choisir le thème
+const selectRandomPlayerForTheme = () => {
+  // Exclure le joueur en cours pour éviter qu'il choisisse pour lui-même
+  const availablePlayers = playerNames.filter((_, index) => index + 1 !== currentPlayer);
 
+  // Sélection aléatoire
+  const randomIndex = Math.floor(Math.random() * availablePlayers.length);
+  const chosenPlayer = availablePlayers[randomIndex];
+
+  // Mettre à jour l'affichage
+  const themeChooserDisplay = document.getElementById("theme-chooser-display");
+  themeChooserDisplay.textContent = `Le joueur ${chosenPlayer} choisit le thème pour ${playerNames[currentPlayer - 1]} !`;
+
+  return chosenPlayer;
+};
 // Fonction qui gère l'affichage de chaque étape
 const showStep = (stepName) => {
   Object.values(steps).forEach((step) => step.classList.remove("active"));
@@ -168,10 +183,13 @@ const showStep = (stepName) => {
 
   // Masquer le game-info pendant le choix des joueurs
   const gameInfo = document.getElementById("game-info");
+  const who = document.getElementById("current-player-display");
   if (stepName === "players") {
     gameInfo.style.display = "none";  // Masque game-info lors de la sélection des joueurs
+    who.style.display = "none";
   } else {
     gameInfo.style.display = "block"; // Réaffiche game-info lors des autres étapes
+    who.style.display = "block";
   }
 
 };
@@ -238,7 +256,7 @@ const generateQuestionFromAPI = async (theme, difficulty) => {
       }
     `;
 
-    const response = await fetch('/chatgpt-api', {  // Remplacez '/chatgpt-api' par l'URL de votre API backend ou directement l'API OpenAI
+    const response = await fetch('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', {  // Remplacez '/chatgpt-api' par l'URL de votre API backend ou directement l'API OpenAI
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -264,7 +282,11 @@ const generateQuestionFromAPI = async (theme, difficulty) => {
 
 
 
+// Appeler cette fonction au début de chaque tour
 const startQuestion = async () => {
+  // Mettre à jour le joueur actif
+  updateCurrentPlayerDisplay();
+
   showStep("question");
 
   // Appeler l'API pour obtenir la question
@@ -338,7 +360,8 @@ const updateScore = (isCorrect, level) => {
 
     resetGameInfo(); // Réinitialiser l'encadré pour le prochain joueur
     applyStyles(11); // Réinitialiser le fond (thème par défaut)
-    showStep("theme"); // Revenir à l'étape du thème
+    showStep("theme");
+    updateCurrentPlayerDisplay(); // Revenir à l'étape du thème
   }, 2000);
 };
 
@@ -359,12 +382,20 @@ const showMessage = (message, isCorrect) => {
   setTimeout(() => popup.remove(), 1500);
 };
 
+// Fonction pour mettre à jour l'affichage du joueur actif
+const updateCurrentPlayerDisplay = () => {
+  const currentPlayerNameElement = document.getElementById("current-player-name");
+  currentPlayerNameElement.textContent = players[currentPlayer].name; // Affiche le nom du joueur actif
+
+    // Sélectionner aléatoirement un joueur pour choisir le thème
+  selectRandomPlayerForTheme();
+};
+
 document.getElementById("pass").addEventListener("click", () => {
   const playerKeys = Object.keys(players);
   const currentIndex = playerKeys.indexOf(String(currentPlayer));
   const nextIndex = (currentIndex + 1) % playerKeys.length;
   currentPlayer = parseInt(playerKeys[nextIndex], 10);
-
   resetGameInfo(); // Réinitialiser l'encadré
   applyStyles(11);  // Appliquer un fond neutre ou un fond de niveau par défaut
   showStep("theme"); // Revenir à l'étape du thème

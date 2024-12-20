@@ -7,6 +7,10 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <div id="current-player-display" style="font-size: 24px; font-weight: bold; margin-bottom: 10px; text-align: center;">
+    Joueur en cours : <span id="current-player-name">-</span>
+  </div>
+
   <div style="display:flex; align-items:center;">
     <div id="game-info" style="position: relative; width: 150px;" class="step">
       <h4 id="theme-title">Thème : -</h4>
@@ -48,7 +52,7 @@
   </div>
   <!-- Étape 1 : Choix du thème -->
   <div id="step-theme" class="step">
-    <h1>Choisissez un thème</h1>
+    <h1 id="theme-chooser-display">C'est à ... de choisir le thème</h1>
     <div class="theme-container">
       <!-- Barre de texte pour le choix du thème -->
       <input type="text" id="theme-input" class="button" placeholder="Saisissez un thème" />
